@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eceab1dab1a64e45a18593902bcfa204" Name="Diagram1">
+        <EntityTypeShape EntityType="pracrikceOffModel.category" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.customer" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.employee" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.employeerole" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.Order" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.orderitem" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.supplier" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pracrikceOffModel.useraccount" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
+        <AssociationConnector Association="pracrikceOffModel.public_product_categoryid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_Order_customerid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_Order_employeeid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_useraccount_employeeid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_useraccount_roleid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_orderitem_orderid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_orderitem_productid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="pracrikceOffModel.public_product_supplierid_fkey" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

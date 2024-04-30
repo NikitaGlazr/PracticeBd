@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище pracrikceOffModel" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 16.1.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Name="customerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeid" />
+          </Key>
+          <Property Name="employeeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="position" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phonework" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="phonepersonal" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="schedule" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="salary" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="personalinfo" Type="text" Nullable="false" />
+          <Property Name="documents" Type="text" Nullable="false" />
+          <Property Name="workhistory" Type="text" />
+          <Property Name="skills" Type="text" />
+          <Property Name="specialfeatures" Type="text" />
+          <Property Name="passportnumber" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="passportseries" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employeerole">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderdate" Type="date" Nullable="false" />
+          <Property Name="deliveryaddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="paymentmethod" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="totalprice" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="comments" Type="text" />
+          <Property Name="customerid" Type="int" Nullable="false" />
+          <Property Name="employeeid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderitem">
+          <Key>
+            <PropertyRef Name="orderitemid" />
+          </Key>
+          <Property Name="orderitemid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="productid" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="image" Type="bytea" Nullable="false" />
+          <Property Name="price" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="discount" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="unitofmeasurement" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="supplierid" Type="int" Nullable="false" />
+          <Property Name="categoryid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplierid" />
+          </Key>
+          <Property Name="supplierid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contactinfo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="licensesandcertificates" Type="text" Nullable="false" />
+          <Property Name="additionalcontactinfo" Type="text" />
+        </EntityType>
+        <EntityType Name="useraccount">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="employeeid" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="public_Order_customerid_fkey">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_Order_employeeid_fkey">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_orderitem_orderid_fkey">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderid" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="orderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_orderitem_productid_fkey">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_product_categoryid_fkey">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="categoryid" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_product_supplierid_fkey">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplierid" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_useraccount_employeeid_fkey">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="useraccount" Type="Self.useraccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeid" />
+            </Principal>
+            <Dependent Role="useraccount">
+              <PropertyRef Name="employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_useraccount_roleid_fkey">
+          <End Role="employeerole" Type="Self.employeerole" Multiplicity="1" />
+          <End Role="useraccount" Type="Self.useraccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeerole">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="useraccount">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище pracrikceOffModelContainer">
+          <EntitySet Name="category" EntityType="Self.category" Schema="public" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="public" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="public" store:Type="Tables" />
+          <EntitySet Name="employeerole" EntityType="Self.employeerole" Schema="public" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="public" store:Type="Tables" />
+          <EntitySet Name="orderitem" EntityType="Self.orderitem" Schema="public" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="public" store:Type="Tables" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" Schema="public" store:Type="Tables" />
+          <EntitySet Name="useraccount" EntityType="Self.useraccount" Schema="public" store:Type="Tables" />
+          <AssociationSet Name="public_Order_customerid_fkey" Association="Self.public_Order_customerid_fkey">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="public_Order_employeeid_fkey" Association="Self.public_Order_employeeid_fkey">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="public_orderitem_orderid_fkey" Association="Self.public_orderitem_orderid_fkey">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <AssociationSet Name="public_orderitem_productid_fkey" Association="Self.public_orderitem_productid_fkey">
+            <End Role="product" EntitySet="product" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <AssociationSet Name="public_product_categoryid_fkey" Association="Self.public_product_categoryid_fkey">
+            <End Role="category" EntitySet="category" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="public_product_supplierid_fkey" Association="Self.public_product_supplierid_fkey">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="public_useraccount_employeeid_fkey" Association="Self.public_useraccount_employeeid_fkey">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="useraccount" EntitySet="useraccount" />
+          </AssociationSet>
+          <AssociationSet Name="public_useraccount_roleid_fkey" Association="Self.public_useraccount_roleid_fkey">
+            <End Role="employeerole" EntitySet="employeerole" />
+            <End Role="useraccount" EntitySet="useraccount" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pracrikceOffModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="categoryid" />
+          </Key>
+          <Property Name="categoryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="Self.public_product_categoryid_fkey" FromRole="category" ToRole="product" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Name="customerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.public_Order_customerid_fkey" FromRole="customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employeeid" />
+          </Key>
+          <Property Name="employeeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phonework" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phonepersonal" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="schedule" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="salary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="personalinfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="documents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="workhistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="specialfeatures" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="passportnumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="passportseries" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.public_Order_employeeid_fkey" FromRole="employee" ToRole="Order" />
+          <NavigationProperty Name="useraccount" Relationship="Self.public_useraccount_employeeid_fkey" FromRole="employee" ToRole="useraccount" />
+        </EntityType>
+        <EntityType Name="employeerole">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="useraccount" Relationship="Self.public_useraccount_roleid_fkey" FromRole="employeerole" ToRole="useraccount" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderdate" Type="DateTime" Nullable="false" />
+          <Property Name="deliveryaddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="paymentmethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="totalprice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="customerid" Type="Int32" Nullable="false" />
+          <Property Name="employeeid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.public_Order_customerid_fkey" FromRole="Order" ToRole="customer" />
+          <NavigationProperty Name="employee" Relationship="Self.public_Order_employeeid_fkey" FromRole="Order" ToRole="employee" />
+          <NavigationProperty Name="orderitem" Relationship="Self.public_orderitem_orderid_fkey" FromRole="Order" ToRole="orderitem" />
+        </EntityType>
+        <EntityType Name="orderitem">
+          <Key>
+            <PropertyRef Name="orderitemid" />
+          </Key>
+          <Property Name="orderitemid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="productid" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.public_orderitem_orderid_fkey" FromRole="orderitem" ToRole="Order" />
+          <NavigationProperty Name="product" Relationship="Self.public_orderitem_productid_fkey" FromRole="orderitem" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="productid" />
+          </Key>
+          <Property Name="productid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="Binary" MaxLength="2147483647" FixedLength="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="discount" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unitofmeasurement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplierid" Type="Int32" Nullable="false" />
+          <Property Name="categoryid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.public_product_categoryid_fkey" FromRole="product" ToRole="category" />
+          <NavigationProperty Name="orderitem" Relationship="Self.public_orderitem_productid_fkey" FromRole="product" ToRole="orderitem" />
+          <NavigationProperty Name="supplier" Relationship="Self.public_product_supplierid_fkey" FromRole="product" ToRole="supplier" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplierid" />
+          </Key>
+          <Property Name="supplierid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactinfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="licensesandcertificates" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="additionalcontactinfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="Self.public_product_supplierid_fkey" FromRole="supplier" ToRole="product" />
+        </EntityType>
+        <EntityType Name="useraccount">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleid" Type="Int32" Nullable="false" />
+          <Property Name="employeeid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="Self.public_useraccount_employeeid_fkey" FromRole="useraccount" ToRole="employee" />
+          <NavigationProperty Name="employeerole" Relationship="Self.public_useraccount_roleid_fkey" FromRole="useraccount" ToRole="employeerole" />
+        </EntityType>
+        <Association Name="public_product_categoryid_fkey">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="categoryid" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="categoryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_Order_customerid_fkey">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_Order_employeeid_fkey">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_useraccount_employeeid_fkey">
+          <End Role="employee" Type="Self.employee" Multiplicity="1" />
+          <End Role="useraccount" Type="Self.useraccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employeeid" />
+            </Principal>
+            <Dependent Role="useraccount">
+              <PropertyRef Name="employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_useraccount_roleid_fkey">
+          <End Role="employeerole" Type="Self.employeerole" Multiplicity="1" />
+          <End Role="useraccount" Type="Self.useraccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeerole">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="useraccount">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_orderitem_orderid_fkey">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderid" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="orderid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_orderitem_productid_fkey">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="orderitem" Type="Self.orderitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="productid" />
+            </Principal>
+            <Dependent Role="orderitem">
+              <PropertyRef Name="productid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="public_product_supplierid_fkey">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplierid" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pracrikceOffEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="customer" EntityType="Self.customer" />
+          <EntitySet Name="employee" EntityType="Self.employee" />
+          <EntitySet Name="employeerole" EntityType="Self.employeerole" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="orderitem" EntityType="Self.orderitem" />
+          <EntitySet Name="product" EntityType="Self.product" />
+          <EntitySet Name="supplier" EntityType="Self.supplier" />
+          <EntitySet Name="useraccount" EntityType="Self.useraccount" />
+          <AssociationSet Name="public_product_categoryid_fkey" Association="Self.public_product_categoryid_fkey">
+            <End Role="category" EntitySet="category" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+          <AssociationSet Name="public_Order_customerid_fkey" Association="Self.public_Order_customerid_fkey">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="public_Order_employeeid_fkey" Association="Self.public_Order_employeeid_fkey">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="public_useraccount_employeeid_fkey" Association="Self.public_useraccount_employeeid_fkey">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="useraccount" EntitySet="useraccount" />
+          </AssociationSet>
+          <AssociationSet Name="public_useraccount_roleid_fkey" Association="Self.public_useraccount_roleid_fkey">
+            <End Role="employeerole" EntitySet="employeerole" />
+            <End Role="useraccount" EntitySet="useraccount" />
+          </AssociationSet>
+          <AssociationSet Name="public_orderitem_orderid_fkey" Association="Self.public_orderitem_orderid_fkey">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <AssociationSet Name="public_orderitem_productid_fkey" Association="Self.public_orderitem_productid_fkey">
+            <End Role="product" EntitySet="product" />
+            <End Role="orderitem" EntitySet="orderitem" />
+          </AssociationSet>
+          <AssociationSet Name="public_product_supplierid_fkey" Association="Self.public_product_supplierid_fkey">
+            <End Role="supplier" EntitySet="supplier" />
+            <End Role="product" EntitySet="product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище pracrikceOffModelContainer" CdmEntityContainer="pracrikceOffEntities">
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="pracrikceOffModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+                <ScalarProperty Name="categoryname" ColumnName="categoryname" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer">
+            <EntityTypeMapping TypeName="pracrikceOffModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee">
+            <EntityTypeMapping TypeName="pracrikceOffModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="employeeid" ColumnName="employeeid" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="phonework" ColumnName="phonework" />
+                <ScalarProperty Name="phonepersonal" ColumnName="phonepersonal" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="schedule" ColumnName="schedule" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="personalinfo" ColumnName="personalinfo" />
+                <ScalarProperty Name="documents" ColumnName="documents" />
+                <ScalarProperty Name="workhistory" ColumnName="workhistory" />
+                <ScalarProperty Name="skills" ColumnName="skills" />
+                <ScalarProperty Name="specialfeatures" ColumnName="specialfeatures" />
+                <ScalarProperty Name="passportnumber" ColumnName="passportnumber" />
+                <ScalarProperty Name="passportseries" ColumnName="passportseries" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeerole">
+            <EntityTypeMapping TypeName="pracrikceOffModel.employeerole">
+              <MappingFragment StoreEntitySet="employeerole">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="pracrikceOffModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="deliveryaddress" ColumnName="deliveryaddress" />
+                <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+                <ScalarProperty Name="totalprice" ColumnName="totalprice" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+                <ScalarProperty Name="employeeid" ColumnName="employeeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderitem">
+            <EntityTypeMapping TypeName="pracrikceOffModel.orderitem">
+              <MappingFragment StoreEntitySet="orderitem">
+                <ScalarProperty Name="orderitemid" ColumnName="orderitemid" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product">
+            <EntityTypeMapping TypeName="pracrikceOffModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="unitofmeasurement" ColumnName="unitofmeasurement" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="categoryid" ColumnName="categoryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplier">
+            <EntityTypeMapping TypeName="pracrikceOffModel.supplier">
+              <MappingFragment StoreEntitySet="supplier">
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="contactinfo" ColumnName="contactinfo" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="licensesandcertificates" ColumnName="licensesandcertificates" />
+                <ScalarProperty Name="additionalcontactinfo" ColumnName="additionalcontactinfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="useraccount">
+            <EntityTypeMapping TypeName="pracrikceOffModel.useraccount">
+              <MappingFragment StoreEntitySet="useraccount">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="employeeid" ColumnName="employeeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
